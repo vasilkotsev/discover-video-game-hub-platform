@@ -1,31 +1,25 @@
-import {
-  Button,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-} from "@chakra-ui/react";
+import { Grid, GridItem, Show } from "@chakra-ui/react";
 
 function App() {
   return (
-    <>
-      <Tabs variant="soft-rounded" colorScheme="green">
-        <TabList>
-          <Tab>Tab 1</Tab>
-          <Tab>Tab 2</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel>
-            <p>ONE!</p>
-          </TabPanel>
-          <TabPanel>
-            <p>TWO!</p>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-      <Button colorScheme="blue">Button</Button>
-    </>
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`, // mobile
+        lg: `"nav nav" "aside main"`, // > 992px
+      }}
+    >
+      <GridItem area="nav" bg="coral">
+        Nav
+      </GridItem>
+      <Show above="lg">
+        <GridItem area="aside" bg="gold">
+          Aside
+        </GridItem>
+      </Show>
+      <GridItem area="main" bg="dodgerblue">
+        Main
+      </GridItem>
+    </Grid>
   );
 }
 
