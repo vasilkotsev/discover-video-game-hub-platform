@@ -1,29 +1,43 @@
-import { HStack, Image, List, ListItem, Text } from "@chakra-ui/react";
+import {
+  HStack,
+  Image,
+  List,
+  ListItem,
+  Spinner,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../utils/getCroppedImageUrl";
 
 const GenreList = () => {
-  const { data: genres, error } = useGenres();
+  const { data: genres, error, isLoading } = useGenres();
 
-  console.log("Render List component");
+  if (error) return null;
+
+  if (isLoading)
+    return (
+      <VStack>
+        <Spinner color="colorPalette.600" />
+        <Text color="colorPalette.600">Loading...</Text>
+      </VStack>
+    );
+
   return (
-    <>
-      {error && <Text>{error}</Text>}
-      <List>
-        {genres.map((genre) => (
-          <ListItem key={genre.id} paddingY="5px">
-            <HStack>
-              <Image
-                boxSize="32px"
-                borderRadius={8}
-                src={getCroppedImageUrl(genre.image_background)}
-              />
-              <Text fontSize="lg">{genre.name}</Text>
-            </HStack>
-          </ListItem>
-        ))}
-      </List>
-    </>
+    <List>
+      {genres.map((genre) => (
+        <ListItem key={genre.id} paddingY="5px">
+          <HStack>
+            <Image
+              boxSize="32px"
+              borderRadius={8}
+              src={getCroppedImageUrl(genre.image_background)}
+            />
+            <Text fontSize="lg">{genre.name}</Text>
+          </HStack>
+        </ListItem>
+      ))}
+    </List>
   );
 };
 
