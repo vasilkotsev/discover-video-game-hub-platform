@@ -32,7 +32,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
 
   return (
     <>
-      <Heading fontSize="2xl" marginBottom={3}>
+      <Heading fontSize="2xl" marginTop={8} marginBottom={3}>
         Genres
       </Heading>
       <List>
@@ -49,7 +49,7 @@ const GenreList = ({ selectedGenre, onSelectGenre }: GenreListProps) => {
                 onClick={() => onSelectGenre(genre)}
                 whiteSpace="normal"
                 textAlign="left"
-                fontSize="lg"
+                fontSize="md"
                 fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
                 variant="link"
               >
