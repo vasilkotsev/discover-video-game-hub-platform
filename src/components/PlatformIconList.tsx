@@ -12,6 +12,8 @@ import { BsGlobe } from "react-icons/bs";
 import { HStack, Icon } from "@chakra-ui/react";
 import { Platform } from "../hooks/useGames";
 import { IconType } from "react-icons";
+import { SiAtari } from "react-icons/si";
+import { SiSega } from "react-icons/si";
 
 interface PlatformIconListProps {
   platforms: Platform[];
@@ -28,6 +30,8 @@ const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
     android: FaAndroid,
     ios: MdPhoneIphone,
     web: BsGlobe,
+    atari: SiAtari,
+    sega: SiSega,
   };
 
   return (
