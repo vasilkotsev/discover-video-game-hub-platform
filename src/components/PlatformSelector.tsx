@@ -18,10 +18,14 @@ const PlatformSelector = ({
 
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<BsChevronDown />}>
+      <MenuButton
+        as={Button}
+        rightIcon={<BsChevronDown />}
+        fontSize={["sm", "md"]}
+      >
         {selectedPlatform?.name || "Platforms"}
       </MenuButton>
-      <MenuList>
+      <MenuList fontSize={["sm", "md"]}>
         {platforms.map((platform) => (
           <MenuItem
             onClick={() => onSelectPlatform(platform)}
