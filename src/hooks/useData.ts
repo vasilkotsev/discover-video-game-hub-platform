@@ -19,24 +19,35 @@ const useData = <T>(
   useEffect(
     () => {
       const controller = new AbortController();
+      const searchQuery = dependencies ? dependencies[0].searchText : null;
+      let filterTimeout: any;
 
-      setLoading(true);
-      apiClient
-        .get<FetchResponseObj<T>>(endpoint, {
-          signal: controller.signal,
-          ...requestConfigObj,
-        })
-        .then((res) => {
-          setData(res.data.results);
-          setLoading(false);
-        })
-        .catch((err) => {
-          if (err instanceof CanceledError) return;
-          setError(err.message);
-          setLoading(false);
-        });
+      const fetchingData = () => {
+        setLoading(true);
+        apiClient
+          .get<FetchResponseObj<T>>(endpoint, {
+            signal: controller.signal,
+            ...requestConfigObj,
+          })
+          .then((res) => {
+            setData(res.data.results);
+            setLoading(false);
+          })
+          .catch((err) => {
+            if (err instanceof CanceledError) return;
+            setError(err.message);
+            setLoading(false);
+          });
+      };
 
-      return () => controller.abort();
+      if (searchQuery?.length > 0) {
+        filterTimeout = setTimeout(fetchingData, 600);
+      } else fetchingData();
+
+      return () => {
+        controller.abort();
+        clearTimeout(filterTimeout);
+      };
     },
     dependencies ? [...dependencies] : []
   );

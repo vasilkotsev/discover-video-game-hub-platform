@@ -33,6 +33,7 @@ function App() {
     >
       <GridItem area="nav">
         <NavBar
+          searchQuery={gameQuery.searchText}
           onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
         />
       </GridItem>
