@@ -15,7 +15,7 @@ const useGenres = () =>
     queryKey: ["genres"],
     queryFn: () =>
       apiClient.get<FetchResponseObj<Genre>>("/genres").then((res) => res.data),
-    staleTime: 10 * 60 * 1000, //10min
+    staleTime: 1 * 60 * 60 * 1000, //1h
     initialData: { count: genres.length, results: genres },
   });
 
