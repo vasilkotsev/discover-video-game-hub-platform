@@ -9,7 +9,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import useGenres, { Genre } from "../hooks/useGenres";
+import useGenres from "../hooks/useGenres";
+import { Genre } from "../services/genres-service";
 import getCroppedImageUrl from "../utils/getCroppedImageUrl";
 
 interface GenreListProps {
