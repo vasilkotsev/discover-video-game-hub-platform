@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import ms from "ms";
 import createScreenshotService from "../services/screenshots-service";
 
 const useScreenshots = (gameId: number) => {
@@ -7,6 +8,7 @@ const useScreenshots = (gameId: number) => {
   return useQuery({
     queryKey: ["screenshots", gameId],
     queryFn: screenshotService.getAll,
+    staleTime: ms("1h"),
   });
 };
 
